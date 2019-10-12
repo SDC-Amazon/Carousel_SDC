@@ -1,20 +1,43 @@
 const mongoose = require('mongoose');
-const mongoose = mongoose.connection;
+const db = mongoose.connection;
+const Products = require('./products.js');
 const Schema = mongoose.Schema;
 
-mongoose.on('error', console.error.bind(console, 'connection error:'));
-mongoose.once('open', () => {
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', () => {
   console.log('db connected!')
 })
 
-mongoose.connect('mongodb://localhost/test', { useNewUrlParser: true });
+mongoose.connect('mongodb://localhost/amishon', { useNewUrlParser: true });
 
-const products = new Schema({
+const productsSchema = new mongoose.Schema({
   id: Number,
   image: String,
   name: String,
   rating: Number,
   price: Number,
-  prime: Boolean
+  prime: Boolean,
+  category_id: Number
 })
 
+const products = mongoose.model('products', productsSchema);
+
+const getTitle = (callback) => {
+  products.find({category_id: 1}, (err, res) => {
+    if (err) {
+      callback(err, null)
+    } else {
+      callback(null, res)
+    }
+  })
+}
+
+// products.insertMany(Products.data, (err, res) => {
+//   if (err) {
+//     console.log(err);
+//   } else {
+//     console.log('successfully seeded');
+//   }
+// })
+
+module.exports = { getTitle }

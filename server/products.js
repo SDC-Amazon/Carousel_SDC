@@ -899,3 +899,7 @@ let data = [{
   category_id: 4
 }
 ];
+
+module.exports = {
+  data: data
+}
