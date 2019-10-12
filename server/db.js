@@ -8,7 +8,7 @@ db.once('open', () => {
   console.log('db connected!')
 })
 
-mongoose.connect('mongodb://localhost/amishon', { useNewUrlParser: true });
+mongoose.connect('mongodb+srv://JoelArmendariz:JoelArmendariz_6719@cluster0-osjds.mongodb.net/amishon?retryWrites=true&w=majority', { useNewUrlParser: true });
 
 const productsSchema = new mongoose.Schema({
   id: Number,
@@ -23,7 +23,7 @@ const productsSchema = new mongoose.Schema({
 const products = mongoose.model('products', productsSchema);
 
 const getTitle = (callback) => {
-  products.find({category_id: 1}, (err, res) => {
+  products.find({category_id: 3}, (err, res) => {
     if (err) {
       callback(err, null)
     } else {
