@@ -35,6 +35,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <h1>Deployed?</h1>
         {this.state.data.map(product => {
           return (
             <Item key={product.id} item={product} />
