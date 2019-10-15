@@ -8,11 +8,24 @@ module.exports = {
   path: DIST_DIR
 },
   module : {
-    rules : [
+    rules: [
       {
-        test : /\.js?/,
-        include : SRC_DIR,
-        loader : 'babel-loader',
+        test: /\.(js|jsx)$/,
+        include: SRC_DIR,
+        loader: 'babel-loader',
+      },
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              modules: true,
+            }
+          }
+        ]
       }
     ]
   }
