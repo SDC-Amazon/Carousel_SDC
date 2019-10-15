@@ -4,6 +4,8 @@
   "description": "",
   "main": "webpack.config.js",
   "scripts": {
+    "restart": "pm2 startOrRestart ecosystem.config.js",
+    "deploy": "pm2 deploy ecosystem.config.js production",
     "test": "jest",
     "server": "nodemon server/server.js",
     "start-oh": "webpack -d --watch"
@@ -38,6 +40,7 @@
     "mysql": "^2.17.1",
     "nodemon": "^1.19.0",
     "path": "^0.12.7",
+    "pm2": "^4.1.1",
     "webpack": "^4.32.2",
     "webpack-cli": "^3.3.2"
   }
