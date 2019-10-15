@@ -16,6 +16,7 @@ class App extends React.Component {
 
   componentDidMount() {
     this.get()
+    document.currentProduct = 1;
   }
 
   get () {
