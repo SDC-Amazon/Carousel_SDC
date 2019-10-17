@@ -28,7 +28,12 @@
   width: 42px;
 }
 .itemContainer {
-  display: flex
+  display: flex;
+  flex-direction: row
+}
+.parentContainer {
+  display: flex;
+  flex-direction: row
 }
 .fa {
   color: orange;
@@ -36,4 +41,19 @@
 }
 .item {
   margin: 0px 0px 0px 15px;
+}
+.nav-btn {
+  position: relative;
+  background: #e7e9ec;
+  border-radius: 3px;
+  border-color: #ADB1B8 #A2A6AC #8D9096;
+  border-style: solid;
+  border-width: 1px;
+  cursor: pointer;
+  display: inline-block;
+  padding: 0;
+  text-align: center;
+  vertical-align: middle;
+  width: 34px;
+  height: 37px;
 }

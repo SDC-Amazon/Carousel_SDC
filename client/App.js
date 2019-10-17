@@ -33,12 +33,15 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="itemContainer">
-        {this.state.data.map(product => {
-          return (
-            <Item key={product.id} item={product} />
-          )
-        })}
+      <div className="parentContainer">
+        <button className="nav-btn left"> + </button>
+        <div className="itemContainer">
+          {this.state.data.map(product => {
+            return (
+              <Item key={product.id} item={product} />
+            )
+          })}
+        </div>
       </div>
     )
   }
