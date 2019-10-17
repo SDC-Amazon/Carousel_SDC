@@ -1,15 +1,45 @@
 import React from 'react';
-import Style from '../App.css';
 
 const Item = (props) => {
-  return (
-    <div className={Style.itemContainer}>
-      <img src={props.item.image}></img>
-      <p>{props.item.name}</p>
-      <p className={Style.test}>Rating: {props.item.rating}</p>
-      <p>${props.item.price}</p>
-    </div>
-  )
+  let ratings = [];
+
+  for (let i = 0; i < 5; i++) {
+    if (i <= props.item.rating) {
+      ratings.push(<span className="fa fa-star checked"></span>);
+    } else {
+      ratings.push(<span className="fa fa-star-o checked"></span>);
+    }
+  }
+
+  if (!props.item.prime) {
+    return (
+      <div className="item">
+        <img className="imgs" src={props.item.image}></img>
+        <p className="names">{props.item.name}</p>
+        <p className="rating">{ratings}</p>
+        <div className="priceContainer">
+          <p className="price">${props.item.price}</p>
+            <img className="primeLogo"
+              src="https://amishon.s3.us-east-2.amazonaws.com/PicturesForFEC/Amazon-Prime-Logo.png">
+            </img>
+        </div>
+      </div>
+    )
+  } else {
+    return (
+      <div className="item">
+        <img className="imgs" src={props.item.image}></img>
+        <p className="names">{props.item.name}</p>
+        <p className="rating">{ratings}</p>
+        <div className="priceContainer">
+          <p className="price">${props.item.price}</p>
+            <img className="primeLogo"
+              src="">
+            </img>
+        </div>
+      </div>
+    )
+  }
 }
 
 export default Item;
