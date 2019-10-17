@@ -9,9 +9,9 @@ db.once('open', () => {
 
 const atlasDB = 'mongodb+srv://JoelArmendariz:JoelArmendariz_6719@cluster0-osjds.mongodb.net/amishon?retryWrites=true&w=majority'
 
-const localDB = 'mongodb://localhost:amishon'
+const localDB = 'mongodb://127.0.0.1/Amishon'
 
-mongoose.connect(atlasDB, { useNewUrlParser: true });
+mongoose.connect(localDB, { useNewUrlParser: true });
 
 const productsSchema = new mongoose.Schema({
   id: Number,
@@ -33,8 +33,17 @@ const products = mongoose.model('products', productsSchema);
 //   }
 // })
 
-const getTitle = (callback) => {
-  products.find({category_id: 4}, (err, res) => {
+const getCategory = (product, callback) => {
+  // let categoryID;
+  // products.find({'id': product}, (err, res) => {
+  //   if (err) {
+  //     console.log(err)
+  //   } else {
+  //     categoryID = res;
+  //   }
+  // })
+  // console.log(id);
+  products.find({category_id: 1}, (err, res) => {
     if (err) {
       callback(err, null)
     } else {
@@ -43,4 +52,4 @@ const getTitle = (callback) => {
   })
 }
 
-module.exports = { getTitle }
+module.exports = { getCategory }

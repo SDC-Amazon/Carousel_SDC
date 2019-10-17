@@ -45,7 +45,7 @@ let data = [{
 },
 {
   id: 6,
-  image: "https://amishon.s3.us-east-2.amazonaws.com/PicturesForFEC/6_1.jpg",
+  image: "https://amishon.s3.us-east-2.amazonaws.com/PicturesForFEC/6_1.jpeg",
   name: "They See Me Rollin They Hatin T-shirt",
   rating: 0,
   price: 19.97,
@@ -135,7 +135,7 @@ let data = [{
 },
 {
   id: 16,
-  image: "https://amishon.s3.us-east-2.amazonaws.com/PicturesForFEC/16_1.jpg",
+  image: "https://amishon.s3.us-east-2.amazonaws.com/PicturesForFEC/16_1.jpeg",
   name: "Amish Country Tee",
   rating: 0,
   price: 19.95,
@@ -180,7 +180,7 @@ let data = [{
 },
 {
   id: 21,
-  image: "https://amishon.s3.us-east-2.amazonaws.com/PicturesForFEC/21_1.jpg",
+  image: "https://amishon.s3.us-east-2.amazonaws.com/PicturesForFEC/21_1.jpeg",
   name: "Amish Formal Tee",
   rating: 0,
   price: 16.94,
@@ -468,7 +468,7 @@ let data = [{
 },
 {
   id: 53,
-  image: "https://amishon.s3.us-east-2.amazonaws.com/PicturesForFEC/53_1.jpg",
+  image: "https://amishon.s3.us-east-2.amazonaws.com/PicturesForFEC/53-1.jpg",
   name: "The Teacher's Bride",
   rating: 0,
   price: 8.99,

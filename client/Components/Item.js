@@ -14,9 +14,11 @@ const Item = (props) => {
   if (!props.item.prime) {
     return (
       <div className="item">
-        <img className="imgs" src={props.item.image}></img>
-        <div className="nameContainer">
-          <p className="names">{props.item.name}</p>
+        <div onClick={props.select} className="imgContainer">
+          <img title={props.id} className="imgs" src={props.item.image}></img>
+        </div>
+        <div onClick={props.select} className="nameContainer">
+          <p title={props.id} className="names">{props.item.name}</p>
         </div>
         <p className="rating">{ratings}</p>
         <div className="priceContainer">
@@ -30,8 +32,12 @@ const Item = (props) => {
   } else {
     return (
       <div className="item">
-        <img className="imgs" src={props.item.image}></img>
-        <p className="names">{props.item.name}</p>
+        <div onClick={props.select} className="imgContainer">
+          <img title={props.id} className="imgs" src={props.item.image}></img>
+        </div>
+        <div onClick={props.select} className="nameContainer">
+          <p title={props.id} className="names">{props.item.name}</p>
+        </div>
         <p className="rating">{ratings}</p>
         <div className="priceContainer">
           <p className="price">${props.item.price}</p>

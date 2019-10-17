@@ -7,9 +7,10 @@ app.use(express.static(__dirname + '/../dist'));
 app.use(express.json());
 
 app.get('/carousel', (req, res) => {
-  db.getTitle((err, results) => {
+  let id = req.query.id
+  db.getCategory(id, (err, results) => {
     if(err) {
-      console.log(err)
+      //console.log(err)
     } else {
       res.send(results)
     }

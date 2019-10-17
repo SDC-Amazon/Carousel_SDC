@@ -9,24 +9,30 @@ class App extends React.Component {
     this.state = {
       data: [],
       currentPage: 6,
+      currentProduct: 26
     }
     this.get = this.get.bind(this);
     this.pageRight = this.pageRight.bind(this);
     this.pageLeft = this.pageLeft.bind(this);
+    this.productSelect = this.productSelect.bind(this);
   }
 
   componentDidMount() {
     this.get()
-    document.currentProduct = 1;
   }
 
   get () {
-    axios.get('/carousel')
+    let data = {
+      params: {
+        id: this.state.currentProduct
+      }
+    }
+    axios.get('/carousel', data)
       .then((res) => {
+        console.log(res.data)
         this.setState({
           data: res.data
         })
-        console.log(res.data)
       })
       .catch((err) => {
         console.log(err);
@@ -49,6 +55,14 @@ class App extends React.Component {
     }
   }
 
+  productSelect(event) {
+    let id = Number(event.target.title)
+    document.productID = id
+    this.setState({
+      currentProduct: id
+    })
+  }
+
   render() {
     return (
       <div className="parentContainer">
@@ -59,7 +73,7 @@ class App extends React.Component {
           {this.state.data.map((product, i) => {
             if (i < this.state.currentPage && i >= this.state.currentPage - 6) {
               return (
-                <Item key={product.id} item={product} />
+                <Item key={product.id} id={product.id} select={this.productSelect} item={product} />
               )
             }
           })}
