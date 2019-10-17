@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
-const db = mongoose.connection;
 const Products = require('./products.js');
-const Schema = mongoose.Schema;
+const db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {

@@ -34,7 +34,9 @@ class App extends React.Component {
   render() {
     return (
       <div className="parentContainer">
-        <button className="nav-btn left"> + </button>
+        <div className="btnContainer">
+          <button className="nav-btn left"> <i className="fa fa-angle-left" aria-hidden="true"></i> </button>
+        </div>
         <div className="itemContainer">
           {this.state.data.map(product => {
             return (
@@ -42,6 +44,7 @@ class App extends React.Component {
             )
           })}
         </div>
+        <hr></hr>
       </div>
     )
   }

@@ -15,7 +15,9 @@ const Item = (props) => {
     return (
       <div className="item">
         <img className="imgs" src={props.item.image}></img>
-        <p className="names">{props.item.name}</p>
+        <div className="nameContainer">
+          <p className="names">{props.item.name}</p>
+        </div>
         <p className="rating">{ratings}</p>
         <div className="priceContainer">
           <p className="price">${props.item.price}</p>
@@ -33,9 +35,6 @@ const Item = (props) => {
         <p className="rating">{ratings}</p>
         <div className="priceContainer">
           <p className="price">${props.item.price}</p>
-            <img className="primeLogo"
-              src="">
-            </img>
         </div>
       </div>
     )
