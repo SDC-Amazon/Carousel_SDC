@@ -41,6 +41,7 @@
 .itemContainer {
   display: flex;
   flex-direction: row;
+  width: 93%;
 }
 .parentContainer {
   display: flex;
@@ -75,5 +76,8 @@
   width: 37px
 }
 .fa-angle-left {
+  font-size: 20px
+}
+.fa-angle-right {
   font-size: 20px
 }

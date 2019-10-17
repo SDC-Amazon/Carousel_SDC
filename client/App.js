@@ -8,9 +8,11 @@ class App extends React.Component {
     super()
     this.state = {
       data: [],
-      title: []
+      currentPage: 6,
     }
     this.get = this.get.bind(this);
+    this.pageRight = this.pageRight.bind(this);
+    this.pageLeft = this.pageLeft.bind(this);
   }
 
   componentDidMount() {
@@ -31,18 +33,39 @@ class App extends React.Component {
       })
   }
 
+  pageRight() {
+    if(this.state.currentPage + 6 < this.state.data.length + 6) {
+      this.setState({
+        currentPage: this.state.currentPage+6
+      })
+    }
+  }
+
+  pageLeft() {
+    if (this.state.currentPage > 6) {
+      this.setState({
+        currentPage: this.state.currentPage-6
+      })
+    }
+  }
+
   render() {
     return (
       <div className="parentContainer">
         <div className="btnContainer">
-          <button className="nav-btn left"> <i className="fa fa-angle-left" aria-hidden="true"></i> </button>
+          <button onClick={this.pageLeft} className="nav-btn left"> <i className="fa fa-angle-left" aria-hidden="true"></i> </button>
         </div>
         <div className="itemContainer">
-          {this.state.data.map(product => {
-            return (
-              <Item key={product.id} item={product} />
-            )
+          {this.state.data.map((product, i) => {
+            if (i < this.state.currentPage && i >= this.state.currentPage - 6) {
+              return (
+                <Item key={product.id} item={product} />
+              )
+            }
           })}
+        </div>
+        <div className="btnContainer">
+          <button onClick={this.pageRight} className="nav-btn right"> <i className="fa fa-angle-right" aria-hidden="true"></i> </button>
         </div>
         <hr></hr>
       </div>
