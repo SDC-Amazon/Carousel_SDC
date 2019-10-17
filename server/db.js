@@ -5,10 +5,14 @@ const Schema = mongoose.Schema;
 
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
-  console.log('db connected!')
-})
+  console.log('db connected!');
+});
 
-mongoose.connect('mongodb+srv://JoelArmendariz:JoelArmendariz_6719@cluster0-osjds.mongodb.net/amishon?retryWrites=true&w=majority', { useNewUrlParser: true });
+const atlasDB = 'mongodb+srv://JoelArmendariz:JoelArmendariz_6719@cluster0-osjds.mongodb.net/amishon?retryWrites=true&w=majority'
+
+const localDB = 'mongodb://localhost:amishon'
+
+mongoose.connect(atlasDB, { useNewUrlParser: true });
 
 const productsSchema = new mongoose.Schema({
   id: Number,
@@ -18,19 +22,9 @@ const productsSchema = new mongoose.Schema({
   price: Number,
   prime: Boolean,
   category_id: Number
-})
+});
 
 const products = mongoose.model('products', productsSchema);
-
-const getTitle = (callback) => {
-  products.find({category_id: 3}, (err, res) => {
-    if (err) {
-      callback(err, null)
-    } else {
-      callback(null, res)
-    }
-  })
-}
 
 // products.insertMany(Products.data, (err, res) => {
 //   if (err) {
@@ -39,5 +33,15 @@ const getTitle = (callback) => {
 //     console.log('successfully seeded');
 //   }
 // })
+
+const getTitle = (callback) => {
+  products.find({category_id: 4}, (err, res) => {
+    if (err) {
+      callback(err, null)
+    } else {
+      callback(null, res)
+    }
+  })
+}
 
 module.exports = { getTitle }

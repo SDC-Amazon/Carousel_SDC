@@ -2,7 +2,7 @@ let data = [{
   id: 1,
   image: "https://amishon.s3.us-east-2.amazonaws.com/PicturesForFEC/1_1.jpg",
   name: "Sweet Amish Vest",
-  rating: 0,
+  rating: 3,
   price: 19.99,
   prime: false,
   category_id: 1
@@ -13,7 +13,7 @@ let data = [{
   name: "Super Sweet Amish Suspenders",
   rating: 0,
   price: 2.99,
-  prime: false,
+  prime: true,
   category_id: 1
 },
 {
@@ -29,9 +29,9 @@ let data = [{
   id: 4,
   image: "https://amishon.s3.us-east-2.amazonaws.com/PicturesForFEC/4_1.jpg",
   name: "Super Fly Amish Black Hat",
-  rating: 0,
+  rating: 5,
   price: 19.79,
-  prime: false,
+  prime: true,
   category_id: 1
 },
 {

@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import Item from './Components/Item';
-import Style from './App.css';
 
 class App extends React.Component {
   constructor () {
@@ -34,7 +33,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="itemContainer">
         {this.state.data.map(product => {
           return (
             <Item key={product.id} item={product} />
