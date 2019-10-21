@@ -87,3 +87,28 @@
 .fa-angle-right {
   font-size: 20px
 }
+.galleryImg {
+  height: 40px;
+  width: 40px;
+  border: 1px solid black;
+  background: #e7e9ec;
+  border-radius: 2px
+}
+.galleryImg:hover {
+  box-shadow: 0 0 3px 2px rgba(228,121,17,.5);
+  cursor: pointer
+}
+.imgsContainer {
+  display: flex;
+  flex-direction: column;
+  width: 40px;
+  margin-right: 4px
+}
+.currentImg {
+  width: 396px;
+  height: 396px
+}
+.imgGallery {
+  display: flex;
+  flex-direction: row;
+}

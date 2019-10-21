@@ -14,7 +14,7 @@ const Item = (props) => {
     return (
       <div className="item">
         <div onClick={props.select} className="imgContainer">
-          <img title={props.id} className="imgs" src={props.item.image}></img>
+          <img title={props.id} className="imgs" src={props.item.image[0]}></img>
         </div>
         <div onClick={props.select} className="nameContainer">
           <p title={props.id} className="names">{props.item.name}</p>

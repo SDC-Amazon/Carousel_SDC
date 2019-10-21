@@ -11,11 +11,11 @@ const atlasDB = 'mongodb+srv://JoelArmendariz:JoelArmendariz_6719@cluster0-osjds
 
 const localDB = 'mongodb://127.0.0.1/Amishon'
 
-mongoose.connect(localDB, { useNewUrlParser: true });
+mongoose.connect(atlasDB, { useNewUrlParser: true });
 
 const productsSchema = new mongoose.Schema({
   id: Number,
-  image: String,
+  image: [String],
   name: String,
   rating: Number,
   price: Number,
@@ -43,13 +43,23 @@ const getCategory = (product, callback) => {
   //   }
   // })
   // console.log(id);
-  products.find({category_id: 4}, (err, res) => {
+  products.find({category_id: 1}, (err, res) => {
     if (err) {
-      callback(err, null)
+      callback(err, null);
     } else {
-      callback(null, res)
+      callback(null, res);
     }
   })
 }
 
-module.exports = { getCategory }
+const getImages = (product, callback) => {
+  products.find({id: product}, (err, res) => {
+    if (err) {
+      callback(err, null);
+    } else {
+      callback(null, res);
+    }
+  })
+}
+
+module.exports = { getCategory, getImages }

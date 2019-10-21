@@ -4,13 +4,24 @@ import axios from 'axios';
 import ImageViewer from './Components/ImageViewer'
 import Item from './Components/Item';
 
-let screenCheck = () => {
-  let page = window.innerWidth;
-  let container = page * 0.73;
-  let itemsNumber = container / 160;
+const screenCheck = () => {
+  const page = window.innerWidth;
+  const container = page * 0.73;
+  const itemsNumber = container / 160;
   return Math.ceil(itemsNumber);
 }
-let itemsNumber = screenCheck();
+
+const itemsNumber = screenCheck();
+
+
+const updateProduct = (product) => {
+  const event = new CustomEvent('updateProduct', {
+    detail: product
+  });
+  window.dispatchEvent(event)
+}
+
+
 
 class Carousel extends React.Component {
   constructor () {
@@ -29,6 +40,10 @@ class Carousel extends React.Component {
 
   componentDidMount() {
     this.get()
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+
   }
 
   screenChange() {
@@ -74,10 +89,11 @@ class Carousel extends React.Component {
 
   productSelect(event) {
     let id = Number(event.target.title)
-    document.productID = id
-    this.setState({
-      currentProduct: id
-    })
+    // document.productID = id
+    // this.setState({
+    //   currentProduct: id
+    // })
+    updateProduct(id);
   }
 
   render() {
