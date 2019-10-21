@@ -16,6 +16,7 @@ class ImageViewer extends React.Component {
 
   componentDidMount () {
     this.getImages();
+
     window.addEventListener('updateProduct', (event) => {
       this.setState({
         currentProduct: event.detail,
@@ -64,7 +65,7 @@ class ImageViewer extends React.Component {
             return <Image key={i} select={this.mouseOver} image={image} />
           })}
         </div>
-        <div>
+        <div className="currentImgContainer">
           <img className="currentImg" src={this.state.currentImage ? this.state.currentImage : this.state.images[0]}></img>
         </div>
       </div>

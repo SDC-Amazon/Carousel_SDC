@@ -89,10 +89,6 @@ class Carousel extends React.Component {
 
   productSelect(event) {
     let id = Number(event.target.title)
-    // document.productID = id
-    // this.setState({
-    //   currentProduct: id
-    // })
     updateProduct(id);
   }
 

@@ -104,9 +104,18 @@
   width: 40px;
   margin-right: 4px
 }
-.currentImg {
+.currentImgContainer {
   width: 396px;
-  height: 396px
+  height: 396px;
+  text-align: center
+}
+.currentImg {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 0;
+  max-height: 396px;
+  max-width: 396px;
+  cursor: pointer;
 }
 .imgGallery {
   display: flex;
