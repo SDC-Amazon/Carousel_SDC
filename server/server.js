@@ -10,7 +10,7 @@ app.get('/carousel', (req, res) => {
   let id = req.query.id
   db.getCategory(id, (err, results) => {
     if(err) {
-      //console.log(err)
+      console.log(err)
     } else {
       res.send(results)
     }
@@ -18,7 +18,7 @@ app.get('/carousel', (req, res) => {
   })
 })
 
-app.post('/carousel', (req, res) => {
+app.get('/images', (req, res) => {
 
 })
 

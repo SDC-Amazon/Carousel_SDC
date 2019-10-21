@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import ImageViewer from './Components/ImageViewer'
 import Item from './Components/Item';
 
 let screenCheck = () => {
@@ -11,7 +12,7 @@ let screenCheck = () => {
 }
 let itemsNumber = screenCheck();
 
-class App extends React.Component {
+class Carousel extends React.Component {
   constructor () {
     super()
     this.state = {
@@ -102,4 +103,5 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('Carousel'));
+ReactDOM.render(<Carousel />, document.getElementById('Carousel'));
+ReactDOM.render(<ImageViewer />, document.getElementById('imageGallery'));
