@@ -16,7 +16,7 @@ class App extends React.Component {
     super()
     this.state = {
       data: [],
-      currentPage: screenCheck(),
+      currentPage: itemsNumber,
       currentProduct: 26
     }
     this.get = this.get.bind(this);
