@@ -43,7 +43,7 @@ const getCategory = (product, callback) => {
   //   }
   // })
   // console.log(id);
-  products.find({category_id: 1}, (err, res) => {
+  products.find({category_id: 4}, (err, res) => {
     if (err) {
       callback(err, null)
     } else {

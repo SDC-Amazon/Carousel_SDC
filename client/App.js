@@ -3,22 +3,38 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import Item from './Components/Item';
 
+let screenCheck = () => {
+  let page = window.innerWidth;
+  let container = page * 0.73;
+  let itemsNumber = container / 160;
+  return Math.ceil(itemsNumber);
+}
+let itemsNumber = screenCheck();
+
 class App extends React.Component {
   constructor () {
     super()
     this.state = {
       data: [],
-      currentPage: 6,
+      currentPage: screenCheck(),
       currentProduct: 26
     }
     this.get = this.get.bind(this);
     this.pageRight = this.pageRight.bind(this);
     this.pageLeft = this.pageLeft.bind(this);
     this.productSelect = this.productSelect.bind(this);
+    this.screenChange = this.screenChange.bind(this);
   }
 
   componentDidMount() {
     this.get()
+  }
+
+  screenChange() {
+    console.log('changed')
+    this.setState({
+      currentPage: screenCheck
+    })
   }
 
   get () {
@@ -29,7 +45,7 @@ class App extends React.Component {
     }
     axios.get('/carousel', data)
       .then((res) => {
-        console.log(res.data)
+        //console.log(res.data)
         this.setState({
           data: res.data
         })
@@ -40,17 +56,17 @@ class App extends React.Component {
   }
 
   pageRight() {
-    if(this.state.currentPage + 6 < this.state.data.length + 6) {
+    if(this.state.currentPage + itemsNumber < this.state.data.length + itemsNumber) {
       this.setState({
-        currentPage: this.state.currentPage+6
+        currentPage: this.state.currentPage + itemsNumber
       })
     }
   }
 
   pageLeft() {
-    if (this.state.currentPage > 6) {
+    if (this.state.currentPage > itemsNumber) {
       this.setState({
-        currentPage: this.state.currentPage-6
+        currentPage: this.state.currentPage-itemsNumber
       })
     }
   }
@@ -71,7 +87,7 @@ class App extends React.Component {
         </div>
         <div className="itemContainer">
           {this.state.data.map((product, i) => {
-            if (i < this.state.currentPage && i >= this.state.currentPage - 6) {
+            if (i < this.state.currentPage && i >= this.state.currentPage - itemsNumber) {
               return (
                 <Item key={product.id} id={product.id} select={this.productSelect} item={product} />
               )
@@ -81,7 +97,6 @@ class App extends React.Component {
         <div className="btnContainer">
           <button onClick={this.pageRight} className="nav-btn right"> <i className="fa fa-angle-right" aria-hidden="true"></i> </button>
         </div>
-        <hr></hr>
       </div>
     )
   }
