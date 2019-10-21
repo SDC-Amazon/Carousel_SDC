@@ -87,12 +87,19 @@
 .fa-angle-right {
   font-size: 20px
 }
-.galleryImg {
+.galleryImgContainer {
   height: 40px;
   width: 40px;
   border: 1px solid black;
-  background: #e7e9ec;
-  border-radius: 2px
+  /* background: #e7e9ec; */
+  border-radius: 2px;
+  text-align: center;
+  margin: 4px
+}
+.galleryImg {
+  max-height: 40px;
+  max-width: 40px;
+  cursor: pointer
 }
 .galleryImg:hover {
   box-shadow: 0 0 3px 2px rgba(228,121,17,.5);
@@ -102,12 +109,13 @@
   display: flex;
   flex-direction: column;
   width: 40px;
-  margin-right: 4px
+  margin-right: 4px;
 }
 .currentImgContainer {
   width: 396px;
   height: 396px;
-  text-align: center
+  margin: 8px;
+  text-align: center;
 }
 .currentImg {
   margin-top: 0;
