@@ -23,10 +23,6 @@ class Carousel extends React.Component {
     this.getProducts()
   }
 
-  componentDidUpdate(prevProps, prevState) {
-
-  }
-
   screenChange() {
     console.log('changed')
     this.setState({
