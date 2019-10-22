@@ -96,13 +96,14 @@
   text-align: center;
   margin: 4px
 }
+.galleryImgContainer:hover {
+  box-shadow: 0 0 3px 2px rgba(228,121,17,.5);
+  border: 1px solid rgba(66, 39, 12, 0.5);
+  cursor: pointer
+}
 .galleryImg {
   max-height: 40px;
   max-width: 40px;
-  cursor: pointer
-}
-.galleryImg:hover {
-  box-shadow: 0 0 3px 2px rgba(228,121,17,.5);
   cursor: pointer
 }
 .imgsContainer {
