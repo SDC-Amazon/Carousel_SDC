@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
-const db = mongoose.connection;
 const Products = require('./products.js');
-const Schema = mongoose.Schema;
+const db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
@@ -10,13 +9,13 @@ db.once('open', () => {
 
 const atlasDB = 'mongodb+srv://JoelArmendariz:JoelArmendariz_6719@cluster0-osjds.mongodb.net/amishon?retryWrites=true&w=majority'
 
-const localDB = 'mongodb://localhost:amishon'
+const localDB = 'mongodb://127.0.0.1/Amishon'
 
 mongoose.connect(atlasDB, { useNewUrlParser: true });
 
 const productsSchema = new mongoose.Schema({
   id: Number,
-  image: String,
+  image: [String],
   name: String,
   rating: Number,
   price: Number,
@@ -34,14 +33,33 @@ const products = mongoose.model('products', productsSchema);
 //   }
 // })
 
-const getTitle = (callback) => {
-  products.find({category_id: 4}, (err, res) => {
+const getCategory = (product, callback) => {
+  // let categoryID;
+  // products.find({'id': product}, (err, res) => {
+  //   if (err) {
+  //     console.log(err)
+  //   } else {
+  //     categoryID = res;
+  //   }
+  // })
+  // console.log(id);
+  products.find({category_id: 1}, (err, res) => {
     if (err) {
-      callback(err, null)
+      callback(err, null);
     } else {
-      callback(null, res)
+      callback(null, res);
     }
   })
 }
 
-module.exports = { getTitle }
+const getImages = (product, callback) => {
+  products.find({id: product}, (err, res) => {
+    if (err) {
+      callback(err, null);
+    } else {
+      callback(null, res);
+    }
+  })
+}
+
+module.exports = { getCategory, getImages }
