@@ -47,6 +47,7 @@
 .itemContainer {
   display: flex;
   flex-direction: row;
+  overflow: visible;
   width: 100%
 }
 .parentContainer {

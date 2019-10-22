@@ -1,5 +1,5 @@
 const screenCheck = () => {
-  const page = window.innerWidth;
+  const page = window.screen.width;
   const container = page * 0.73;
   const itemsNumber = container / 160;
   return Math.ceil(itemsNumber);
