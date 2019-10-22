@@ -6,7 +6,7 @@ class ImageViewer extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      currentProduct: 2,
+      currentProduct: 1,
       images: [],
       currentImage: ''
     }
