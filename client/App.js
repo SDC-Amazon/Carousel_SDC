@@ -5,4 +5,4 @@ import ImageViewer from './Components/ImageViewer';
 
 
 ReactDOM.render(<Carousel />, document.getElementById('Carousel'));
-ReactDOM.render(<ImageViewer />, document.getElementById('imageGallery'));
+ReactDOM.render(<ImageViewer />, document.getElementById('ImageGallery'));

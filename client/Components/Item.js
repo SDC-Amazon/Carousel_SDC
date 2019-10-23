@@ -5,7 +5,11 @@ const Item = (props) => {
 
   for (let i = 0; i < 5; i++) {
     if (i < props.item.rating) {
-      ratings.push(<span className="fa fa-star checked"></span>);
+      if (props.item.rating - i === 0.5) {
+        ratings.push(<i class="fa fa-star-half-o" aria-hidden="true"></i>);
+      } else {
+        ratings.push(<span className="fa fa-star checked"></span>);
+      }
     } else {
       ratings.push(<span className="fa fa-star-o checked"></span>);
     }

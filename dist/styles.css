@@ -61,7 +61,7 @@
   text-rendering: optimizeLegibility;
   font-family: verdana,arial,helvetica,sans-serif;
 }
-.fa-star, .fa-star-o {
+.fa-star, .fa-star-o, .fa-star-half-o {
   color: orange;
   height: 18px
 }
