@@ -6,7 +6,7 @@ const Item = (props) => {
   for (let i = 0; i < 5; i++) {
     if (i < props.item.rating) {
       if (props.item.rating - i === 0.5) {
-        ratings.push(<i class="fa fa-star-half-o" aria-hidden="true"></i>);
+        ratings.push(<i className="fa fa-star-half-o" aria-hidden="true"></i>);
       } else {
         ratings.push(<span className="fa fa-star checked"></span>);
       }
@@ -26,11 +26,10 @@ const Item = (props) => {
         <p className="rating">{ratings}</p>
         <div className="priceContainer">
           <p className="price">${props.item.price}</p>
-            { props.item.prime ?
+            { props.item.prime &&
             <img className="primeLogo"
               src="https://amishon.s3.us-east-2.amazonaws.com/PicturesForFEC/Amazon-Prime-Logo.png">
             </img>
-            : null
             }
         </div>
       </div>

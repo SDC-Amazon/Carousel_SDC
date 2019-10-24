@@ -127,11 +127,14 @@
 }
 .currentImgContainer {
   display: flex;
-  width: 400px;
-  height: 400px;
+  width: 36.5%;
   margin: 8px;
   justify-content: center;
   align-items: center;
+}
+.currentImgContainer:after {
+  content: '';
+  padding-bottom: 100%
 }
 .currentImg {
   margin-top: 0;
