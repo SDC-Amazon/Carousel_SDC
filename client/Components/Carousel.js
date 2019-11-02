@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Item from './Item';
 import Utils from '../Utils/Utils';
+require(newrelic)
 const itemsNumber = Utils.screenCheck();
 
 class Carousel extends React.Component {
@@ -50,7 +51,7 @@ class Carousel extends React.Component {
         id: this.state.currentProduct
       }
     }
-    axios.get('http://ec2-18-191-245-73.us-east-2.compute.amazonaws.com/carousel', data)
+    axios.get('/carousel', data)
       .then((res) => {
         this.setState({
           data: res.data
