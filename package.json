@@ -29,7 +29,6 @@
     "express": "^4.17.0",
     "faker": "^4.1.0",
     "json2csv": "^4.5.4",
-    "mongoose": "^5.7.4",
     "newrelic": "^6.0.0",
     "pg": "^7.12.1",
     "mongoose": "^5.7.5",
