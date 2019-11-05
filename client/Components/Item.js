@@ -6,12 +6,12 @@ const Item = (props) => {
   for (let i = 0; i < 5; i++) {
     if (i < props.item.rating) {
       if (props.item.rating - i === 0.5) {
-        ratings.push(<i className="fa fa-star-half-o" aria-hidden="true"></i>);
+        ratings.push(<i key={i} className="fa fa-star-half-o" aria-hidden="true"></i>);
       } else {
-        ratings.push(<span className="fa fa-star checked"></span>);
+        ratings.push(<span key={i} className="fa fa-star checked"></span>);
       }
     } else {
-      ratings.push(<span className="fa fa-star-o checked"></span>);
+      ratings.push(<span key={i} className="fa fa-star-o checked"></span>);
     }
   }
 

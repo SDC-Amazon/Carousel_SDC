@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Item from './Item';
 import Utils from '../Utils/Utils';
-require(newrelic)
+
 const itemsNumber = Utils.screenCheck();
 
 class Carousel extends React.Component {
