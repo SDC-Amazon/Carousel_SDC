@@ -1,10 +1,12 @@
 const faker = require('faker');
+const Path = require('path');
+const fs = require('fs');
 const createCsvWriter = require('csv-writer').createObjectCsvWriter;
-const createCSVFile = (cb) => {
+const createCSVFile = (count, cb) => {
    
-        let i = 1;
+        let i = count;
         let file = `seedfile_${i}.csv`;
-        generateRandom(1,62,__dirname+'/csvfiles/'+file, (err,result) => {
+        generateRandom(i,i+99999,__dirname+'/csvfiles/'+file, (err,result) => {
             if (err) {
                 console.log(err)
             } else  
@@ -17,44 +19,77 @@ const createCSVFile = (cb) => {
     
 }
 
-const generateRandom = (start,end,file,cb) => {
-    let data = [];
-    const csvWriter = createCsvWriter({
-    path:file,
-    header:[
-        {id:'id',title:'id'},
-        {id:'image', title:'image'},
-        {id:'name',title:'name'},
-        {id:'rating',title:'rating'},
-        {id:'price',title:'price'}, 
-        {id:'prime',title:'prime'},
-        {id:'category_id', title:'category_id'} 
-        ]
-    });
 
-    for (var i = start; i <= end; i++ ) {
-        createData(i ,(err,result) => {
-            if (err) {
-                console.log('error generating record '+i);
-            } else {
-                console.log('created Data');
-                data.push(result);
-            }
-        })
-    }
-    csvWriter
-    .writeRecords(data)
-    .then(() => {
-        console.log('created File '+file);
-        cb(null,file) 
-    
+const getImagesFromDir = (cb) => {
+    const imagesFromDir = [];
+    const directoryPath = Path.join(__dirname, '/../dist/images');
+    fs.readdir(directoryPath,(err,files) => {
+        if (err) {
+            console.log('Problem scanning dir');
+            cb(err,null);
+        } else 
+        {
+            files.forEach( (file) => {
+                // create array with existing files;
+                imagesFromDir.push(file);
+            })
+            cb(null,imagesFromDir);
+        }
+
     })
+
+}
+
+const generateRandom = (start,end,file,cb) => {
+    var images = [];
+    getImagesFromDir((err,res)=> {
+        if (err) {
+            console.log('error');
+        } else
+        {
+           //console.log('got images' + JSON.stringify(res));
+            images =  res;
+            createCSV(images);
+        }
+    })
+    const createCSV = (images) => {
+            let data = [];
+            const csvWriter = createCsvWriter({
+            path:file,
+            header:[
+                {id:'id',title:'id'},
+                {id:'image', title:'image'},
+                {id:'name',title:'name'},
+                {id:'rating',title:'rating'},
+                {id:'price',title:'price'}, 
+                {id:'prime',title:'prime'},
+                {id:'category_id', title:'category_id'} 
+                ]
+            });
+
+            for (var i = start; i <= end; i++ ) {
+                createData(i ,images, (err,result) => {
+                    if (err) {
+                        console.log('error generating record '+i);
+                    } else {
+                        data.push(result);
+                    }
+                })
+            }
+            csvWriter
+            .writeRecords(data)
+            .then(() => {
+                console.log('created File '+file);
+                cb(null,file) 
+            
+            })
+    }
     
 }
 
 
-const createData = (i, callback) => {
-    createFake(i, (err,result) => {
+const createData = (i, images, callback) => {
+    createFake(i, images, (err,result) => {
         if (err) {
             callback('error creating json',null)
         } else 
@@ -65,10 +100,10 @@ const createData = (i, callback) => {
 }
 
 
-const createFake = (i, callback) => {
+const createFake = (i, images, callback) => {
     var record = {}
     record.id = i;
-    record.image = generateRandomPics();
+    record.image = generateRandomPics(images);
     //record.image = faker.image.imageUrl();
     record.name = faker.commerce.productName();
     record.rating = generateRandomRating();
@@ -78,17 +113,25 @@ const createFake = (i, callback) => {
     callback(null,record);
 }
 
-
-const generateRandomPics = () => {
+// TODO -- change this function to get a random image from the images dir
+const generateRandomPics = (images) => {
     let pics = '{';
     var numOfPics = Math.floor(Math.random() * (3) + 1);
     for (let i=0; i<numOfPics; i++) {
-        pics += faker.image.imageUrl();
+        pics += `/images/${getRandomImage(images)}`;
         if (i < numOfPics-1 ) {
             pics += ',';
         }
     }
     return pics + '}';
+}
+
+const getRandomImage = (images) => {
+
+    let randomidx = Math.floor(Math.random() * images.length);
+    randomFile = images[randomidx];
+    return randomFile;
+    
 }
 
 const generateRandomRating = () => {

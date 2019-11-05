@@ -3,3 +3,6 @@ node_modules
 .env
 newrelic.js
 config.js
+dist/images/
+server/csvfiles/
+

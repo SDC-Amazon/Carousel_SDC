@@ -3,6 +3,8 @@ const db = require('./db.js');
 const cors = require('cors');
 const fakeData = require('./Generator')
 const app = express();
+const images = require('./imageDownloader');
+require('newrelic')
 
 app.use(express.static(__dirname + '/../dist'));
 app.use(express.json());
@@ -32,8 +34,15 @@ app.get('/images', (req, res) => {
   })
 })
 
+app.get('/downloadImages', (req,res) => {
+  let qty = req.query.qty;
+  images.downloadPics(qty);
+  res.send(`generating ${qty} images`);
+})
+let count = 1;
 app.get('/generateFakes', (req,res) => {
-  fakeData.createCSVFile((err,file) => {
+ 
+  fakeData.createCSVFile(count, (err,file) => {
     if (err) {
       console.log(err);
     } else {
@@ -42,9 +51,11 @@ app.get('/generateFakes', (req,res) => {
          console.log("error transfering to postgre "+JSON.stringify(err));
         } else 
         {
+          count += 100000;
           res.send(result);
         }
       })
+      //res.send(file);
     }
   })
 })
