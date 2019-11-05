@@ -2,6 +2,7 @@ node_modules
 .DS_Store
 .env
 newrelic.js
+newrelic_agent.log
 config.js
 dist/images/
 server/csvfiles/
