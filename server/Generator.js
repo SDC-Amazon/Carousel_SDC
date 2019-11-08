@@ -5,13 +5,13 @@ const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 const createCSVFile = (count, cb) => {
    
         let i = count;
-        let file = `seedfile_${i}.csv`;
-        generateRandom(i,i+99999,__dirname+'/csvfiles/'+file, (err,result) => {
+        let file = __dirname+`/csvfiles/seedfile_${i}.csv`;
+        generateRandom(i,i+99999,null, (err,result) => {
             if (err) {
                 console.log(err)
             } else  
             {
-                console.log('Generated file '+file)
+                //console.log('Generated file '+file)
                 cb(null, result)
             }
         });
@@ -50,10 +50,25 @@ const generateRandom = (start,end,file,cb) => {
            //console.log('got images' + JSON.stringify(res));
             images =  res;
             createCSV(images);
+
         }
     })
     const createCSV = (images) => {
             let data = [];
+            for (var i = start; i <= end; i++ ) {
+                createData(i ,images, (err,result) => {
+                    if (err) {
+                        console.log('error generating record '+i);
+                    } else {
+                        data.push(result);
+                    }
+                })
+            }
+            if (file === null) {
+                cb(null, data);
+                return;
+            }
+
             const csvWriter = createCsvWriter({
             path:file,
             header:[
@@ -67,21 +82,13 @@ const generateRandom = (start,end,file,cb) => {
                 ]
             });
 
-            for (var i = start; i <= end; i++ ) {
-                createData(i ,images, (err,result) => {
-                    if (err) {
-                        console.log('error generating record '+i);
-                    } else {
-                        data.push(result);
-                    }
-                })
-            }
+
+
             csvWriter
             .writeRecords(data)
             .then(() => {
                 console.log('created File '+file);
                 cb(null,file) 
-            
             })
     }
     

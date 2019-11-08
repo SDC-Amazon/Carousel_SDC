@@ -1,5 +1,6 @@
 const express = require('express');
-const db = require('./db.js');
+//const db = require('./db.js');
+const db = require('./mongodb.js');
 const cors = require('cors');
 const fakeData = require('./Generator')
 const app = express();
@@ -39,9 +40,43 @@ app.get('/downloadImages', (req,res) => {
   images.downloadPics(qty);
   res.send(`generating ${qty} images`);
 })
-let count = 1;
-app.get('/generateFakes', (req,res) => {
- 
+
+
+app.get('/populatemongo', (req,res) => {
+  let count = 1500001;
+  let sent = false;
+  const createData = (req,res) => {
+    
+    fakeData.createCSVFile(count, (err,data) => {
+      if (err) {
+        console.log(err);
+        res.send(err);
+      } else 
+      {
+        db.writeToMongo(data,(err,result) => {
+          if (err) {
+            console.log(err);
+            res.send(err);
+          } else
+          {
+            count += 100000;
+            if (!sent) {
+                res.send(`seeding :${count}`)
+                sent = true;
+            } 
+            console.log(`count :${count}`);
+            if (count < 10000000) {
+              createData(req,res);
+            }
+          }
+        })
+      }
+    })
+  }
+  createData(req,res);
+})
+
+app.get('/generateFakes', (req,res) => { 
   fakeData.createCSVFile(count, (err,file) => {
     if (err) {
       console.log(err);

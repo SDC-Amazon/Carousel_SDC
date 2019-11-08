@@ -6,10 +6,6 @@ const faker = require('faker')
 
 const downloadImages = (images) => {
     
-   
-    
-   
-  
     let promises = [];
     for (var i=0; i < images.length; i++) {
 
